@@ -1,0 +1,8 @@
+{
+  "name": "Student Planner",
+  "description": "A complete student day planner and study time tracking application with analytics and persistent storage.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
