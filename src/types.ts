@@ -15,6 +15,7 @@ export interface Task {
   name: string;
   date: string; // ISO date string (YYYY-MM-DD)
   scheduledTime?: string; // HH:mm
+  durationMinutes?: number;
   priority: Priority;
   completed: boolean;
 }

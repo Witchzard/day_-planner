@@ -13,6 +13,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: { isOpen: boolean
   const [name, setName] = useState('');
   const [date, setDate] = useState(defaultDate || format(new Date(), 'yyyy-MM-dd'));
   const [scheduledTime, setScheduledTime] = useState('');
+  const [duration, setDuration] = useState('');
   const [priority, setPriority] = useState<Priority>('Medium');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,6 +26,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: { isOpen: boolean
       name,
       date,
       scheduledTime: scheduledTime || undefined,
+      durationMinutes: duration ? Number(duration) : undefined,
       priority,
       completed: false
     });
@@ -32,6 +34,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: { isOpen: boolean
     // Reset and close
     setName('');
     setScheduledTime('');
+    setDuration('');
     setStep(1);
     onClose();
   };
@@ -78,18 +81,24 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: { isOpen: boolean
               <Input required type="date" value={date} onChange={e => setDate(e.target.value)} />
             </div>
             <div className="space-y-2">
+              <Label>Priority</Label>
+              <Select value={priority} onChange={e => setPriority(e.target.value as Priority)}>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
               <Label>Scheduled Time (Optional)</Label>
               <Input type="time" value={scheduledTime} onChange={e => setScheduledTime(e.target.value)} />
             </div>
-          </div>
-          
-          <div className="space-y-2">
-            <Label>Priority</Label>
-            <Select value={priority} onChange={e => setPriority(e.target.value as Priority)}>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </Select>
+            <div className="space-y-2">
+              <Label>Duration (Minutes) (Optional)</Label>
+              <Input type="number" min="1" value={duration} onChange={e => setDuration(e.target.value)} placeholder="e.g., 30" />
+            </div>
           </div>
           
           <div className="pt-4 flex justify-end gap-2">

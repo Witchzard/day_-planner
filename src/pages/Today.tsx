@@ -114,6 +114,7 @@ export default function Today() {
                       </div>
                       <div className="flex items-center gap-3 text-xs text-slate-500">
                         {task.scheduledTime && <span>{task.scheduledTime}</span>}
+                        {task.durationMinutes && <span>{task.scheduledTime ? '• ' : ''}{formatDuration(task.durationMinutes)}</span>}
                         <span className={`flex items-center gap-1 ${task.priority === 'High' ? 'text-red-500' : task.priority === 'Medium' ? 'text-amber-500' : 'text-blue-500'}`}>
                           • {task.priority} Priority
                         </span>

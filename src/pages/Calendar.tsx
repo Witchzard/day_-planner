@@ -114,7 +114,9 @@ export default function CalendarPage() {
                     {selectedTasks.map(t => (
                       <li key={t.id} className="text-sm flex items-start gap-2">
                         <span className={t.completed ? 'text-green-500' : 'text-slate-400'}>•</span>
-                        <span className={t.completed ? 'line-through opacity-60' : ''}>{t.name}</span>
+                        <span className={t.completed ? 'line-through opacity-60' : ''}>
+                          {t.name} {t.durationMinutes ? <span className="text-slate-500 ml-1">({formatDuration(t.durationMinutes)})</span> : null}
+                        </span>
                       </li>
                     ))}
                   </ul>

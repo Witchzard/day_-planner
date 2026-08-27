@@ -4,6 +4,7 @@ import { Card, Button, Badge, Select } from '../components/ui';
 import { AddTaskModal } from '../components/Modals';
 import { CheckCircle2, Circle, Trash2, Plus } from 'lucide-react';
 import { Task } from '../types';
+import { formatDuration } from '../lib/utils';
 
 export default function Tasks() {
   const { data, updateTask, deleteTask } = useData();
@@ -98,6 +99,7 @@ export default function Tasks() {
                   <div className="flex items-center gap-3 text-xs text-slate-500">
                     <span>{task.date}</span>
                     {task.scheduledTime && <span>• {task.scheduledTime}</span>}
+                    {task.durationMinutes && <span>• {formatDuration(task.durationMinutes)}</span>}
                     <span className={`flex items-center gap-1 ${task.priority === 'High' ? 'text-red-500' : task.priority === 'Medium' ? 'text-amber-500' : 'text-blue-500'}`}>
                       • {task.priority} Priority
                     </span>
